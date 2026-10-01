@@ -23,6 +23,39 @@ observations in the publicly available 1,025-row dataset. The project
 therefore also develops and evaluates a duplicate-aware modelling
 pipeline.
 
+## Problem Definition and Research Question
+
+Early heart-disease prediction is formulated here as a **binary
+classification problem**: given 13 clinical predictor variables, the
+model predicts the binary `target` indicating the presence or absence
+of heart disease.
+
+The methodological problem investigated in this reproduction is equally
+important. The publicly distributed dataset contains many exact repeated
+observations. If duplicate records are randomly divided between training
+and testing sets, a model may be evaluated on feature vectors that it
+has effectively already encountered during training. This can inflate
+hold-out performance and weaken conclusions about generalisation to
+genuinely unseen observations.
+
+Accordingly, this project has two objectives:
+
+1. reproduce the selected stacking-based heart-disease study as closely
+   as possible using the available methodological information; and
+2. test whether the apparent performance remains credible after
+   duplicate records are explicitly accounted for.
+
+The central research question is:
+
+> **How does a stacking ensemble perform when evaluated on unique,
+> previously unseen observations, and can a duplicate-aware tuned
+> stacking pipeline improve classification performance without
+> overstating changes in ranking/discrimination ability?**
+
+The project therefore separates **reproduction performance** from
+**duplicate-aware generalisation performance** rather than treating a
+high random-split accuracy as sufficient evidence of generalisation.
+
 ## Dataset
 
 The Heart Disease dataset used in this project is accessed **directly
@@ -199,10 +232,17 @@ achieved approximately:
 -   F1-score: **85.53%**
 -   ROC-AUC: **90.42%**
 
-The strongest improvement was observed in recall, while ROC-AUC remained
-very similar to the baseline. Therefore, the results are interpreted as
-an improvement in threshold-dependent classification rather than a large
-improvement in overall ranking discrimination.
+The strongest improvement was observed in recall and other
+threshold-dependent classification metrics. In the comparison highlighted
+in the technical report, ROC-AUC remains **0.8658**, despite improvements
+in several threshold-dependent metrics. Therefore, these changes should
+**not** be interpreted as evidence that the model improved its overall
+ranking or discrimination ability. ROC-AUC evaluates how well predicted
+scores rank positive observations above negative observations across
+thresholds, whereas accuracy, precision, recall and F1 depend on the
+chosen classification threshold. The appropriate conclusion is therefore
+that classification decisions at the selected threshold improved, while
+ranking/discrimination performance was unchanged in that comparison.
 
 ## Installation
 
