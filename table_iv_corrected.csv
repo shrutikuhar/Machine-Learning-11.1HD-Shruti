@@ -1,0 +1,8 @@
+Metric,Original Stacking,Proposed Tuned Stacking,Absolute Difference (Proposed - Original),Interpretation
+Accuracy,0.7541,0.8033,+0.0492,Improved by 4.92 percentage points
+Precision,0.7647,0.8000,+0.0353,Improved by 3.53 percentage points
+Recall,0.7879,0.8485,+0.0606,Improved by 6.06 percentage points
+F1 Score,0.7761,0.8235,+0.0474,Improved by 4.74 percentage points
+ROC-AUC,0.8658,0.8658,0.0000,Unchanged - no improvement in ranking/discrimination
+Balanced Accuracy,0.7511,0.7992,+0.0481,Improved by 4.81 percentage points
+MCC,0.5038,0.6031,+0.0993,Improved by 0.0993
