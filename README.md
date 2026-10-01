@@ -222,32 +222,28 @@ The proposed model improves hold-out accuracy by approximately **4.92
 percentage points** relative to the original-style stacking baseline
 evaluated on the same unique-data split.
 
-### Corrected Table IV — Duplicate-Aware Hold-Out Comparison
+### Corrected Table IV — Original versus Reproduced Accuracy
 
-The following table replaces the erroneous comparison cells in Table IV.
-All differences are calculated as **Proposed Tuned Stacking - Original
-Stacking** on the same duplicate-free hold-out split.
+Table IV compares the accuracy reported in the original paper with the
+accuracy obtained in this reproduction. The comparison is calculated as
+**Reproduction - Original Paper**.
 
-| Metric | Original Stacking | Proposed Tuned Stacking | Difference | Interpretation |
-|---|---:|---:|---:|---|
-| Accuracy | 0.7541 | 0.8033 | **+0.0492** | +4.92 percentage points |
-| Precision | 0.7647 | 0.8000 | **+0.0353** | +3.53 percentage points |
-| Recall | 0.7879 | 0.8485 | **+0.0606** | +6.06 percentage points |
-| F1 Score | 0.7761 | 0.8235 | **+0.0474** | +4.74 percentage points |
-| ROC-AUC | 0.8658 | 0.8658 | **0.0000** | Unchanged |
-| Balanced Accuracy | 0.7511 | 0.7992 | **+0.0481** | +4.81 percentage points |
-| MCC | 0.5038 | 0.6031 | **+0.0993** | Improved by 0.0993 |
+| Model | Original Paper | Reproduction | Difference |
+|---|---:|---:|---:|
+| LR | 84.39% | 80.98% | **−3.41 pp** |
+| DT | 92.68% | 98.54% | **+5.86 pp** |
+| RF | 92.68% | 100.00% | **+7.32 pp** |
+| XGBoost | 90.73% | 100.00% | **+9.27 pp** |
+| NB | 84.39% | 82.93% | **−1.46 pp** |
+| KNN | 85.85% | 86.34% | **+0.49 pp** |
+| Stacking | 98.53% | 100.00% | **+1.47 pp** |
 
-**Interpretation.** The tuned model improves the threshold-dependent
-classification metrics on this hold-out split, with the largest change
-in recall (+0.0606). ROC-AUC is exactly unchanged at **0.8658**, so this
-experiment does not show an improvement in ranking/discrimination
-performance. The AUC result must therefore be discussed separately from
-the improvements in accuracy, precision, recall, F1, balanced accuracy
-and MCC.
-
-A machine-readable copy of this corrected table is provided in
-`table_iv_corrected.csv`.
+Here, **pp** denotes percentage points. These reproduction accuracies
+should be interpreted cautiously because the original 1,025-row dataset
+contains extensive exact duplication and the random hold-out split has
+substantial train-test feature overlap. The duplicate-aware experiments
+reported separately are therefore more informative about generalisation
+to unseen unique observations.
 
 ### Repeated Validation
 
